@@ -1,0 +1,110 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    background-color: #007bff;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+/* Portafolio */
+.portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.project {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+}
+
+.project h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.project p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.project-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin: auto;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .portfolio {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+}

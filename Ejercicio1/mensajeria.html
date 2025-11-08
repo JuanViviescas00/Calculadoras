@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajeria</title>
+</head>
+<body>
+    <div class="cuerpo">
+    <h1>Mensajeria</h1>
+    <div id="caja">    
+    <h2>Subtotal</h2>
+    <label for="peso"></label>
+    <input type="number" name="peso" id="peso" placeholder="Ingrese el peso en Kg">
+    
+        <label for="tipo">Escoja el tipo de recargo del envio:</label>
+    <select name="tipo" id="tipo">
+        <option value="isNaN">Escoja una categoria</option>
+    <option value="12" class="tipo">Paquetes (12%)</option>
+    <option value="25" class="tipo">Remesas (25%)</option>
+    <option value="7" class="tipo">Sobres (7%)</option>
+    </select>
+
+    <h3>Seguro Todo Riesgo (6%)</h3>
+    <div id="seguro">
+    <p>
+    <input type="radio" id="seguro" name="seguro" value="true">
+    <label for="seguro">Si</label>
+    </p>
+    <p>
+    <input type="radio" id="seguro" name="seguro" value="false">
+    <label for="seguro">No</label>
+    </p>
+    </div>
+    <div>
+    <h3 id="recargo"></h3>
+    <h3 id="segurocosto"></h3>
+    <h2 id="totalpago"></h2>
+    </div>
+    <button id="boton" onclick="calculartotal()">Calcular</button>
+    <img alt="" id="imagen">
+</div>
+<div id="img">
+</div>
+</div>
+
+
+<script>
+    function calculartotal(){
+        let peso = document.getElementById("peso")
+        let tipo = document.getElementById("tipo")
+        let radios = document.getElementsByName("seguro")
+        let recargo = document.getElementById("recargo")
+        let segurocosto = document.getElementById("segurocosto")
+        let totalpago = document.getElementById("totalpago")
+        let img = document.getElementById("imagen")
+
+        let pesoValor = parseFloat(peso.value) * 5600
+        let recargoTotal = (pesoValor * tipo.value) / 100
+        let seguroTotal = 0
+        for (let i = 0; i < radios.length; i++) {
+            if(radios[i].checked && radios[i].value === "true"){
+
+                seguroTotal = (pesoValor * 6) / 100
+            }
+        }
+
+        
+        if (peso.value === "" || isNaN(peso.value) || peso.value <= 0){
+            alert("Por favor ingrese un peso válido en Kg")
+            img.src=""
+        }else if (tipo.value === "isNaN"){
+            alert("Debe seleccionar un tipo de artículo para el envío")
+        }else if(tipo.value === "12" ){
+            img.setAttribute("src", "./paquete.png")
+        }else if(tipo.value === "25" ){
+            img.setAttribute("src", "./remesas.jpg")
+        }else if(tipo.value === "7" ){
+            img.setAttribute("src", "./sobre.jpg")
+        }
+
+        let total = parseFloat(pesoValor) + recargoTotal + seguroTotal
+
+        recargo.textContent = "Recargo: $"+recargoTotal.toFixed(2)
+        segurocosto.textContent = "Costo Seguro: $"+seguroTotal.toFixed(2)
+        totalpago.textContent = "Total a pagar: $"+total.toFixed(2)
+    }
+
+</script>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: aliceblue;
+         
+        }
+
+        
+        #caja{
+            border: 2px solid black;
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: lightgray;
+        }
+
+        #seguro{
+            margin-left: 5px;
+            gap: 10px;
+        }
+
+
+        #seguro label{
+            padding-left: 10px;
+        }
+
+        input, select{
+            width: hid;
+            padding: 10px;
+            margin: 10px 0px 20px 0px;
+            border-radius: 10px;
+            border: 1px solid gray;
+            overflow: hidden;
+        }
+
+        button{
+            padding: 10px;
+            border: 2px solid green;
+            border-radius: 10px;
+            background-color: rgb(123, 240, 123);
+            font-weight: bold;
+            cursor: pointer;
+            width: 50%;
+            margin: auto;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        img{
+            width:400px;
+        }
+        
+    </style>
+
+</body>
+</html>
